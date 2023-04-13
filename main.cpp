@@ -3,13 +3,27 @@
 #include <vector>
 #include <atomic>
 #include <gflags/gflags.h>
+#include <string>
+#include <sstream>
+#include <fstream>
 
 DEFINE_string(input, "", "Path to the text file of the URL described by newline characters.");
 
 std::atomic<int> progress(0);  // 進捗状況
 
-std::vector<std::string> get_URL_list(){
-  
+std::string read_list(){
+    
+}
+
+std::vector<std::string> get_URL_list(std::string input_string){
+    std::stringstream ss(input_string);
+    std::string line;
+    std::vector<std::string> string_vector;
+    while (std::getline(ss, line)) {  // 改行区切りで一行ずつ読み込む
+        string_vector.push_back(line);
+    }
+
+    return string_vector;
 }
 
 void download_files(const std::vector<std::string>& urls) {
